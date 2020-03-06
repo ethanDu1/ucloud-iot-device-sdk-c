@@ -7,7 +7,7 @@ ESP8266与ESP32同样使用esp-idf环境，但是环境配置和代码不一样�
 ### 配置官方开发环境 
 首先配置好esp-idf开发环境，参考链接： https://docs.espressif.com/projects/esp-idf/zh_CN/latest/get-started/#get-started-set-up-tools <br>
 配置完成的界面 <br>
-![esp32_命令界面.png](/../images/esp32_命令界面.png)
+![esp32_命令界面.png](../images/esp32_命令界面.png)
 
 ### 使用ESP32_SDK
 1.下载ESP32_SDK: https://git.ucloudadmin.com/usdk/esp32_sdk <br>

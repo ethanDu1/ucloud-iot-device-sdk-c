@@ -3,7 +3,7 @@
 本文主要介绍如何将C-SDK移植到无运行操作系统无联网通讯能力的STM32上，并通过STM32的串口发送AT指令控制移远EC20模组连接云平台，本文仅介绍演示移植MQTT传输功能。<br>
 由于运行在裸机上，不能使用C-SDK自带的编译系统，需要抽取C-SDK的部分文件到用户使用的编译系统上，本文中使用IAR进行演示编译。
 
-![连接云图.png](/../images/连接云图.png)
+![连接云图.png](../images/连接云图.png)
 
 ## 准备工作
 
@@ -23,15 +23,15 @@ STM32Cube使用参考：[STM32Cube使用参考](/stm32cube_user_guide.md)
 
 因为要通过串口控制通信模组,配置新增一个串口，打开串口中断模式。
 
-![stm32f1新增模组控制串口.png](/../images/stm32f1新增模组控制串口.png)
+![stm32f1新增模组控制串口.png](../images/stm32f1新增模组控制串口.png)
 
 完成其他配置后选择生成EWARM V8工程
 
 ## 抽取C-SDK中的代码到生成的STM32工程
 
-![加入工程1.png](/../images/加入工程1.png)
+![加入工程1.png](../images/加入工程1.png)
 
-![加入工程2.png](/../images/加入工程2.png)
+![加入工程2.png](../images/加入工程2.png)
 
 ### API部分文件
 
@@ -45,33 +45,33 @@ STM32Cube使用参考：[STM32Cube使用参考](/stm32cube_user_guide.md)
 
 * utils: 公共库
 
-![stm32f1抽取代码.png](/../images/stm32f1抽取代码.png)
+![stm32f1抽取代码.png](../images/stm32f1抽取代码.png)
 
 sdk-impl文件夹只需要抽取使用到的API的头文件
 
-![sdk-impl部分.png](/../images/sdk-impl部分.png)
+![sdk-impl部分.png](../images/sdk-impl部分.png)
 
 ### AT模组实现部分，只选择当前使用的通信模组
 
-![stm32f1根据使用模组选择文件夹.png](/../images/stm32f1根据使用模组选择文件夹.png)
+![stm32f1根据使用模组选择文件夹.png](../images/stm32f1根据使用模组选择文件夹.png)
 
 ### HAL层相关的接口
 
 使用了AT指令进行通信，需要抽取AT指令HAL层的接口文件
 
-![stm32f1抽取代码2.png](/../images/stm32f1抽取代码2.png)
+![stm32f1抽取代码2.png](../images/stm32f1抽取代码2.png)
 
 本案例中没有运行操作系统。因此需要抽取nos下的文件
 
-![stm32f1抽取代码3.png](/../images/stm32f1抽取代码3.png)
+![stm32f1抽取代码3.png](../images/stm32f1抽取代码3.png)
 
 ### 将抽取的文件加入STM32CubeMX生成的工程
 
-![stm32f1将代码加入工程.png](/../images/stm32f1将代码加入工程.png)
+![stm32f1将代码加入工程.png](../images/stm32f1将代码加入工程.png)
 
 配置编译宏和添加头文件
 
-![stm32f1增加编译宏和头文件.png](/../images/stm32f1增加编译宏和头文件.png)
+![stm32f1增加编译宏和头文件.png](../images/stm32f1增加编译宏和头文件.png)
 
 ### 修改HAL层接口
 根据使用得硬件平台逐一适配HAL层接口
@@ -200,5 +200,5 @@ static HAL_StatusTypeDef UART_Receive_IT(UART_HandleTypeDef *huart)
 
 根据C-SDK中的ucloud-iot-device-sdk-c\samples\mqtt\mqtt_sample.c修改main.c函数，编译运行。
 
-![stm32f1编译运行.png](/../images/stm32f1编译运行.png)
+![stm32f1编译运行.png](../images/stm32f1编译运行.png)
 
